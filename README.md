@@ -1,97 +1,66 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🌿 Garden Eggshell Calcium Calc
 
-# Getting Started
+Garden Eggshell Calcium Calc is a lightweight React Native app designed to help gardeners calculate safe and effective ratios for creating homemade calcium solutions using eggshells and vinegar.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Whether you're a backyard grower or a soil science enthusiast, this utility provides precision and insight into your natural fertilizer mixes.
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🥚 What It Does
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- Calculates calcium carbonate weight from eggshell amounts
+- Evaluates acetic acid content based on vinegar volume and acidity
+- Recommends optimal vinegar-to-eggshell ratios for a complete reaction
+- Warns about insufficient or excessive acidity that may harm soil life
+- Offers conversions between tablespoons, cups, grams, mL, and %
+- Designed with clarity for casual gardeners and technical growers alike
 
-```sh
-# Using npm
-npm start
+---
 
-# OR using Yarn
-yarn start
-```
+## 📦 Tech Stack
 
-## Step 2: Build and run your app
+- **React Native**
+- `@react-native-picker/picker`
+- Modular structure for scalable integration
+- Styled with intuitive UI for ease of use
+- Prepared for ad banner integration (optional)
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+---
 
-### Android
+## 🧱 Architecture Notes
 
-```sh
-# Using npm
-npm run android
+- `CalciumConverter.tsx`: Self-contained component for UI and logic
+- Designed to work inside a scrollable container (`ScrollView`)
+- Display-safe even with banner ads rendered beneath
+- Easily embeddable into a master app like Home Manager
 
-# OR using Yarn
-yarn android
-```
+---
 
-### iOS
+## 🚧 Future Add-ons (Pluggable Ideas)
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- pH safety indicators
+- Dilution recommendations
+- Export batch logs
+- Multi-fertilizer calculator tools
+- Seasonal companion planting suggestions
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+---
 
-```sh
-bundle install
-```
+## 📲 Store Listing
 
-Then, and every time you update your native dependencies, run:
+This app is listed in both the Apple App Store and Google Play Store under:
 
-```sh
-bundle exec pod install
-```
+**Garden Eggshell Calcium Calc**
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 📝 License
 
-# OR using Yarn
-yarn ios
-```
+This tool is provided as-is under an open or custom license (TBD). You may modify or redistribute the source if usage complies with any attached terms.
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🙌 Created By
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Developed with care by **Shawn Sampson**  
+Modular developer with a vision for scalable tools and plant-friendly designs.
