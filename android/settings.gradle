@@ -1,6 +1,30 @@
-pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+pluginManagement { 
+    includeBuild("../node_modules/@react-native/gradle-plugin") 
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }    
+}
+
+
 plugins { id("com.facebook.react.settings") }
 extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
 rootProject.name = 'EggVinegarMixCalc'
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
+
+
+dependencyResolutionManagement {
+  // 👇 Recommended to REMOVE this line if conflicts occur:
+  // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+
+
+rootProject.name = "EggVinegarMixCalc"
+include(":app")
