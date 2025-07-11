@@ -1,9 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import CalciumConverter from './CalciumConverter';
-import { BANNER_UNIT_ID, AD_REQUEST_OPTIONS } from './src/config/AdMobConfig.ts'; 
-//'@config/AdMobConfig'
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 export default function App() {
   return (
@@ -14,9 +12,9 @@ export default function App() {
 
       <View style={styles.adContainer}>
         <BannerAd
-          unitId={BANNER_UNIT_ID}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-          requestOptions={AD_REQUEST_OPTIONS}
+          unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-3940256099942544/6300978111'}
+          size={BannerAdSize.BANNER}
+          requestOptions={{ requestNonPersonalizedAdsOnly: true }}
         />
       </View>
 
@@ -27,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#d0f0c0',
+    backgroundColor: '#f6f6f6',
   },
   content: {
     flex: 1,

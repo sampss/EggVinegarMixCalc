@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 export default function CalciumConverter() {
   const [eggshellAmount, setEggshellAmount] = useState<string>('1');
   const [eggshellUnit, setEggshellUnit] = useState<'tbsp' | 'cup' | 'grams'>('tbsp');
-  const [vinegarAmount, setVinegarAmount] = useState<string>('1.5');
+  const [vinegarAmount, setVinegarAmount] = useState<string>('1.75');
   const [vinegarUnit, setVinegarUnit] = useState<'ml' | 'cups'>('cups');
   const [acidity, setAcidity] = useState<string>('2');
   const [summary, setSummary] = useState<string>('');
