@@ -33,10 +33,8 @@ class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    CoroutineScope(Dispatchers.IO).launch {
-      MobileAds.initialize(this@MainActivity) {
-        // ✅ AdMob SDK is ready; ads can now be safely loaded
-      }
+    MobileAds.initialize(this@MainActivity) {
+      // ✅ AdMob SDK is ready; ads can now be safely loaded
     }
   }
 }
