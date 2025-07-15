@@ -1,28 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { StatusBar, StyleSheet, useColorScheme, SafeAreaView, View } from 'react-native';
+import CalciumConverter from './CalciumConverter.tsx';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-
-function App() {
+export default function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = isDarkMode ? styles.darkBackground : styles.lightBackground;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.wrapper, backgroundStyle]}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+      <View style={styles.content}>
+        <CalciumConverter />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
   },
+  content: {
+    flex: 1,
+  },
+  lightBackground: {
+    backgroundColor: '#f6f6f6',
+  },
+  darkBackground: {
+    backgroundColor: '#000',
+  },
 });
-
-export default App;
