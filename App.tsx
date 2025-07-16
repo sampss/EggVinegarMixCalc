@@ -1,12 +1,21 @@
-import React from 'react';
-import { StatusBar, StyleSheet, useColorScheme, SafeAreaView, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, StyleSheet, useColorScheme, SafeAreaView, View, } from 'react-native';
 import CalciumConverter from './CalciumConverter.tsx';
-import { BANNER_UNIT_ID, AD_REQUEST_OPTIONS } from './src/banner/AdMobConfig.ts';
+import { BANNER_UNIT_ID, AD_REQUEST_OPTIONS, initializeAdMob, } from './src/banner/AdMobConfig.ts';
 import { BannerAd, BannerAdSize,} from 'react-native-google-mobile-ads';
 
+
+
 export default function App() {
+  const [isAdMobReady, setIsAdMobReady] = useState(false);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = isDarkMode ? styles.darkBackground : styles.lightBackground;
+
+  useEffect(() => {
+    initializeAdMob().then(() => {
+      setIsAdMobReady(true);
+    });
+  }, []);
 
   return (
     <SafeAreaView style={[styles.wrapper, backgroundStyle]}>
@@ -15,34 +24,35 @@ export default function App() {
         <CalciumConverter />
       </View>
 
-      <View style={styles.adContainer}>
-        <BannerAd
-          unitId={BANNER_UNIT_ID}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-          requestOptions={AD_REQUEST_OPTIONS}
-        />
-      </View>
-
+      {isAdMobReady && (
+        <View style={styles.adContainer}>
+          <BannerAd
+            unitId={BANNER_UNIT_ID}
+            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+            requestOptions={AD_REQUEST_OPTIONS}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+      flex: 1,
   },
   content: {
-    flex: 1,
+      flex: 1,
   },
   lightBackground: {
-    backgroundColor: '#f6f6f6',
+      backgroundColor: '#f6f6f6',
   },
   darkBackground: {
-    backgroundColor: '#000',
+      backgroundColor: '#000',
   },
     adContainer: {
-    alignItems: 'center', // 🧭 Centers horizontally
-    paddingVertical: 10,  // Optional spacing above/below
-    backgroundColor: '#d0f0c0',
+      alignItems: 'center', // 🧭 Centers horizontally
+      paddingVertical: 10,  // Optional spacing above/below
+      backgroundColor: '#d0f0c0',
   },
 });
