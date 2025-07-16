@@ -1,97 +1,118 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🥚 EggVinegarMixCalc - 🐛 Debug Version
 
-# Getting Started
+**EggVinegarMixCalc** is a React Native mobile app designed to assist users in calculating optimal mixing ratios between calcium sources and vinegar-based ingredients. It features a garden-themed UI and supports Android sideload testing via APK distribution.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 🚀 Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- 🌱 Ratio calculator for eggshell + vinegar conversions  
+- 🍋 Intuitive garden-inspired user interface  
+- 📦 Lightweight debug-signed APK for internal testing  
+- 📲 Supports sideloading and non-Play Store installs  
+- 📊 Scalable, modular codebase for future expansion  
+- 🎯 Built with performance and reusability in mind
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
+## 📁 Project Structure
+
+```
+EggVinegarMixCalc/
+├── android/                 # Native Android project folder
+├── ios/                     # iOS project folder (optional)
+├── src/                     # Source code and components
+├── assets/                  # Images, icons, etc.
+├── react-native.config.js   # Autolinking and native config overrides
+├── README.md                # You're reading it 🌟
+```
+
+---
+
+## 🔧 Getting Started
+
+### 📦 Prerequisites
+
+- Node.js (v18+ recommended)  
+- Android Studio or physical device with USB debugging  
+- React Native CLI  
+- Java JDK  
+- ADB (Android Debug Bridge)
+
+### 🏗️ Install Dependencies
+
+```bash
+npm install
+```
+
+### ▶️ Start Metro Bundler
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+### 📱 Run on Android Device/Emulator
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 📤 Sideload Testing (Debug Build)
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+The APK is debug-signed and ready to install manually for testing purposes.
 
-```sh
-bundle install
+### 🔍 APK Location
+
+```
+android/app/build/outputs/apk/release/app-release.apk
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+Rename as needed:
+```
+EggVinegarMixCalc-v1.0-debug.apk
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### ✅ Installation Steps
 
-```sh
-# Using npm
-npm run ios
+1. Enable **Install from Unknown Sources** on your Android device  
+2. Transfer the APK via email, cloud storage, or USB  
+3. Tap the file to install  
+4. Launch and explore the app
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## ✍️ Development Notes
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+- Icons generated with [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/)
+- Native module `@react-native-picker/picker` is disabled via `react-native.config.js` to avoid autolinking issues
+- Project rebuilt from scratch to resolve Gradle and CMake conflicts  
+- Debug builds automatically signed and installable on most Android devices
 
-## Step 3: Modify your app
+---
 
-Now that you have successfully run the app, let's make changes!
+## 🧪 Troubleshooting
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- Run `./gradlew clean` inside the `android/` folder to reset builds  
+- Use `react-native.config.js` to disable problematic modules  
+- Ensure the correct NDK version is installed via Android Studio
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+🔗 [React Native Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting)
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
+## 🙌 Contributing
 
-You've successfully run and modified your React Native App. :partying_face:
+Pull requests welcome! Open an issue for larger changes or ideas.
 
-### Now what?
+Suggestions welcome for:
+- Expanded conversion logic  
+- Seasonal garden themes  
+- Onboarding splash animation
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+---
 
-# Troubleshooting
+## 📄 License
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT — fork freely and help this app bloom 🌻
