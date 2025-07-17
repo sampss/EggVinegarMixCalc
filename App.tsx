@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, StyleSheet, useColorScheme, SafeAreaView, View, } from 'react-native';
 import CalciumConverter from './CalciumConverter.tsx';
-import { BANNER_UNIT_ID, AD_REQUEST_OPTIONS, initializeAdMob, } from './src/banner/AdMobConfig.ts';
-import { BannerAd, BannerAdSize,} from 'react-native-google-mobile-ads';
-
+import { initializeAdMob, } from './src/banner/AdMobConfig.ts';
+import Banner from './src/banner/Banner';
 
 
 export default function App() {
@@ -24,15 +23,7 @@ export default function App() {
         <CalciumConverter />
       </View>
 
-      {isAdMobReady && (
-        <View style={styles.adContainer}>
-          <BannerAd
-            unitId={BANNER_UNIT_ID}
-            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            requestOptions={AD_REQUEST_OPTIONS}
-          />
-        </View>
-      )}
+      {isAdMobReady && <Banner backgroundColor='#d0f0c0' />}
     </SafeAreaView>
   );
 }
@@ -49,10 +40,5 @@ const styles = StyleSheet.create({
   },
   darkBackground: {
       backgroundColor: '#000',
-  },
-    adContainer: {
-      alignItems: 'center', // 🧭 Centers horizontally
-      paddingVertical: 10,  // Optional spacing above/below
-      backgroundColor: '#d0f0c0',
   },
 });
