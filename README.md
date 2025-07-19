@@ -11,6 +11,7 @@
 - 📦 Lightweight debug-signed APK for internal testing  
 - 📲 Supports sideloading and non-Play Store installs  
 - 📊 Scalable, modular codebase for future expansion  
+- 💰 AdMob banner integration using test ads during development  
 - 🎯 Built with performance and reusability in mind
 
 ---
@@ -21,7 +22,9 @@
 EggVinegarMixCalc/
 ├── android/                 # Native Android project folder
 ├── ios/                     # iOS project folder (optional)
-├── src/                     # Source code and components
+├── src/
+│   ├── banner/              # Modular AdMob components and config
+│   └── ...                  # Source code and components
 ├── assets/                  # Images, icons, etc.
 ├── react-native.config.js   # Autolinking and native config overrides
 ├── README.md                # You're reading it 🌟
@@ -59,9 +62,9 @@ npm run android
 
 ---
 
-## 📤 Sideload Testing (Debug Build)
+## 📤 Sideload Testing (Release with Test Ads)
 
-The APK is debug-signed and ready to install manually for testing purposes.
+This release build is configured to show **test ads** via AdMob’s `TestIds.BANNER` for safe validation.
 
 ### 🔍 APK Location
 
@@ -69,7 +72,7 @@ The APK is debug-signed and ready to install manually for testing purposes.
 android/app/build/outputs/apk/release/app-release.apk
 ```
 
-Rename as needed:
+> Rename for distribution:
 ```
 EggVinegarMixCalc-v1.0-debug.apk
 ```
@@ -83,22 +86,54 @@ EggVinegarMixCalc-v1.0-debug.apk
 
 ---
 
-## ✍️ Development Notes
+## ⚙️ AdMob Integration
 
-- Icons generated with [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/)
-- Native module `@react-native-picker/picker` is disabled via `react-native.config.js` to avoid autolinking issues
-- Project rebuilt from scratch to resolve Gradle and CMake conflicts  
-- Debug builds automatically signed and installable on most Android devices
+- Banner ads use `react-native-google-mobile-ads`
+- `AdMobConfig.ts` holds unit ID, request options, and init logic
+- `Banner.tsx` is a reusable ad component with dynamic sizing
+- Test ads are shown using `TestIds.BANNER` regardless of build type
 
 ---
 
 ## 🧪 Troubleshooting
 
-- Run `./gradlew clean` inside the `android/` folder to reset builds  
-- Use `react-native.config.js` to disable problematic modules  
-- Ensure the correct NDK version is installed via Android Studio
+<details>
+<summary>🧰 Developer Commands</summary>
+
+```bash
+# Clean build artifacts
+./gradlew clean
+
+# Rebuild and install to device
+npx react-native run-android
+
+# Generate debug APK for sideloading
+./gradlew assembleDebug
+
+# Generate release APK (test ads must be hardcoded)
+./gradlew assembleRelease
+
+# Start Metro server
+npm start
+```
+
+</details>
+
+- Ensure correct NDK version is installed  
+- Run `gradlew clean` if build issues occur  
+- Validate AdMob SDK is initialized before rendering ads
 
 🔗 [React Native Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting)
+
+---
+
+## ✍️ Development Notes
+
+- Icons generated with [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/)  
+- Native module `@react-native-picker/picker` disabled via `react-native.config.js`  
+- Project rebuilt from scratch to resolve Gradle and CMake conflicts  
+- AdMob banners configured to render only after SDK initialization completes  
+- Modular ad components live in `src/banner/`
 
 ---
 
