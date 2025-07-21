@@ -1,0 +1,7 @@
+{
+  "APP_ENV": "internal",           // 'internal' or 'production'
+  "IS_Test_BUILD": true,
+  "USE_TEST_ADS": true,
+  "VERSION_LABEL": "0.8-beta",
+  "SHOW_DEBUG_UI": true
+}

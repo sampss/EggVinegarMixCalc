@@ -1,11 +1,15 @@
 // 📦 AdMobConfig.ts
 import mobileAds, { MaxAdContentRating, TestIds } from 'react-native-google-mobile-ads';
+import settings from '../settings/settings.json';
+import keys from '../settings/keys.json';
 
-export const BANNER_UNIT_ID = TestIds.BANNER;  // explicit testing - comment out or delete for production.
+const IS_Test_BUILD =  settings.IS_Test_BUILD; // controls if testing
 
-// export const BANNER_UNIT_ID = __DEV__
-//  ? TestIds.BANNER
-//  : 'ca-app-pub-2390674268118774~7608573803';
+const BANNER_UNIT_ID_PRODUCTION = keys.ADMOB.BANNER_UNIT_ID_PRODUCTION;
+
+export const BANNER_UNIT_ID = IS_Test_BUILD
+  ? TestIds.BANNER
+  : BANNER_UNIT_ID_PRODUCTION;
 
 export const AD_REQUEST_OPTIONS = {
   requestNonPersonalizedAdsOnly: true,
