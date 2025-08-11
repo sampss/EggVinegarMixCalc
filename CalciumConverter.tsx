@@ -67,26 +67,33 @@ export default function CalciumConverter() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>🥚 Liquid Calcium Calculator</Text>
 
-      <Text style={styles.label}>Eggshell Quantity</Text>
-      <TextInput
-        style={styles.input}
-        value={eggshellAmount}
-        onChangeText={setEggshellAmount}
-        keyboardType="numeric"
-        placeholder="Enter amount"
-        placeholderTextColor={isDark ? '#aaa' : '#666'}
-      />
-      <View style={styles.pickerWrapper}>
-        <Picker
-          selectedValue={eggshellUnit}
-          onValueChange={(item) => setEggshellUnit(item)}
-          style={styles.picker}
-        >
-          <Picker.Item label="Tablespoon (tbsp)" value="tbsp" />
-          <Picker.Item label="Cup" value="cup" />
-          <Picker.Item label="Grams (g)" value="grams" />
-        </Picker>
+    <View style={styles.eggRow}>
+      <View style={styles.eggInputWrapper}>
+        <Text style={styles.label}>Eggshell Quantity</Text>
+        <TextInput
+          style={styles.input}
+          value={eggshellAmount}
+          onChangeText={setEggshellAmount}
+          keyboardType="numeric"
+          placeholder="Enter amount"
+          placeholderTextColor={isDark ? '#aaa' : '#666'}
+        />
       </View>
+      <View style={styles.eggUnitWrapper}>
+        <Text style={styles.label}>Eggshell Quantity Unit</Text>
+        <View style={[styles.pickerWrapper, styles.eggshellUnitPickerWrapper]}>          
+          <Picker
+            selectedValue={eggshellUnit}
+            onValueChange={(item) => setEggshellUnit(item)}
+            style={styles.picker}
+          >
+            <Picker.Item label="Tablespoon (tbsp)" value="tbsp" />
+            <Picker.Item label="Cup" value="cup" />
+            <Picker.Item label="Grams (g)" value="grams" />
+          </Picker>
+        </View>
+      </View>
+    </View>
 
       <View style={styles.row}>
         <View style={styles.acidityWrapper}>
@@ -238,5 +245,23 @@ const getStyles = (isDark: boolean) =>
       fontSize: 24,
       fontWeight: 'bold',
       color: isDark ? '#fff' : '#000',
+    },
+    eggRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 10,
+    },
+    eggInputWrapper: {
+      flex: 1,
+      marginRight: 8,
+    },
+    eggUnitWrapper: {
+      flex: 1,
+      marginLeft: 8,
+    },
+    eggshellUnitPickerWrapper: {
+      marginTop: 4,
+      height: 36,
     },
   });

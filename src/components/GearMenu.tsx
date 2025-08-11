@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
     padding: 12,
     elevation: 4,
     width: width * 0.6,
+    borderWidth: 1,
+    borderColor: '#000', // solid black
   },
   toggleRow: {
     flexDirection: 'row',
