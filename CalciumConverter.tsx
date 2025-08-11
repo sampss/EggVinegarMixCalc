@@ -204,6 +204,11 @@ const getStyles = (isDark: boolean) =>
       borderColor: isDark ? '#555' : '#000',
       fontSize: 14,
       marginTop: 20,
+      shadowColor: '#000',
+      shadowOffset: { width: 4, height: 2 },
+      shadowOpacity: 0.5,
+      shadowRadius: 4,
+      elevation: 4, // Android shadow
     },
     row: {
       flexDirection: 'row',
