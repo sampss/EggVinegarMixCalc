@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { useTheme } from 'react-native-paper';
 
 export default function CalciumConverter() {
+  const theme = useTheme();
+  const isDark = theme.dark;
+  const styles = getStyles(isDark);
+
   const [eggshellAmount, setEggshellAmount] = useState<string>('1');
   const [eggshellUnit, setEggshellUnit] = useState<'tbsp' | 'cup' | 'grams'>('tbsp');
-  const [acidity, setAcidity] = useState<number>(2); // now a number
+  const [acidity, setAcidity] = useState<number>(2);
   const [vinegarUnit, setVinegarUnit] = useState<'ml' | 'cups'>('cups');
   const [summary, setSummary] = useState<string>('');
+  const [acidityInput, setAcidityInput] = useState(acidity.toString());
 
   const getEggshellGrams = (): number => {
     const val = parseFloat(eggshellAmount) || 0;
@@ -32,13 +45,11 @@ export default function CalciumConverter() {
     const idealAcetic = CaCO3 * 1.2;
     const recommendedVinegarMl = idealAcetic / getAceticPerMl();
 
-    let result = `🥚 Estimated calcium carbonate: ${CaCO3.toFixed(2)}g\n`;
+    let result = `🥚 Estimated calcium carbonate: ${CaCO3.toFixed(2)}g\n\n`;
     result += `🎯 Required vinegar volume: ${formatVolume(recommendedVinegarMl)} at ${acidity}% acidity`;
 
     setSummary(result);
   }, [eggshellAmount, eggshellUnit, acidity, vinegarUnit]);
-
-    const [acidityInput, setAcidityInput] = useState(acidity.toString());
 
   const incrementAcidity = () => {
     const next = Math.min(acidity + 1, 100);
@@ -52,7 +63,6 @@ export default function CalciumConverter() {
     setAcidityInput(next.toString());
   };
 
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>🥚 Liquid Calcium Calculator</Text>
@@ -63,6 +73,8 @@ export default function CalciumConverter() {
         value={eggshellAmount}
         onChangeText={setEggshellAmount}
         keyboardType="numeric"
+        placeholder="Enter amount"
+        placeholderTextColor={isDark ? '#aaa' : '#666'}
       />
       <View style={styles.pickerWrapper}>
         <Picker
@@ -83,22 +95,23 @@ export default function CalciumConverter() {
             <TouchableOpacity onPress={decrementAcidity} style={styles.arrow}>
               <Text style={styles.arrowText}>−</Text>
             </TouchableOpacity>
-              <TextInput
-                style={styles.acidityInput}
-                value={acidityInput}
-                keyboardType="numeric"
-                onChangeText={(text) => setAcidityInput(text)}
-                onBlur={() => {
-                  const val = parseInt(acidityInput);
-                  if (!isNaN(val)) {
-                    const clamped = Math.min(Math.max(val, 1), 100);
-                    setAcidity(clamped);
-                    setAcidityInput(clamped.toString());
-                  } else {
-                    setAcidityInput(acidity.toString()); // fallback to last valid
-                  }
-                }}
-              />
+            <TextInput
+              style={styles.acidityInput}
+              value={acidityInput}
+              keyboardType="numeric"
+              onChangeText={(text) => setAcidityInput(text)}
+              onBlur={() => {
+                const val = parseInt(acidityInput);
+                if (!isNaN(val)) {
+                  const clamped = Math.min(Math.max(val, 1), 100);
+                  setAcidity(clamped);
+                  setAcidityInput(clamped.toString());
+                } else {
+                  setAcidityInput(acidity.toString());
+                }
+              }}
+              placeholderTextColor={isDark ? '#aaa' : '#666'}
+            />
             <TouchableOpacity onPress={incrementAcidity} style={styles.arrow}>
               <Text style={styles.arrowText}>+</Text>
             </TouchableOpacity>
@@ -125,100 +138,105 @@ export default function CalciumConverter() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#D0F0C0', // Tea Green
-    flexGrow: 1,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  label: {
-    marginTop: 12,
-    fontWeight: '800',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#a9a9a9',
-    padding: 8,
-    backgroundColor: 'white',
-    borderRadius: 6,
-    marginBottom: 8,
-    marginTop: 4,
-  },
-  pickerWrapper: {
-    borderRadius: 6,
-    backgroundColor: '#e0e0e0',
-    borderWidth: 1,
-    borderColor: '#000',
-    marginBottom: 10,
-    height: 40, // Match arrow button height
-   justifyContent: 'center',
-  },
-  vinegarUnitPickerWrapper: {
-    marginTop: 4,
-  },
-  picker: {
-    height: 52,
-    color: '#000',
-    fontSize: 12,
-    fontFamily: 'System', // or your custom font name
-    textAlignVertical: 'center',
-    includeFontPadding: false,
-  },
-  vinegarUnitPicker: {
-  },
-  output: {
-    backgroundColor: '#FED800',
-    padding: 12,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#000',
-    fontSize: 14,
-    marginTop: 20,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  acidityWrapper: {
-    flex: 1,
-    marginRight: 10,
-  },
-  unitWrapper: {
-    flex: 1,
-    marginLeft: 10,
-  },
-  acidityInputRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  acidityInput: {
-    flex: 1,
-    textAlign: 'center',
-    borderWidth: 1,
-    borderColor: '#a9a9a9',
-    backgroundColor: 'white',
-    paddingVertical: 8,
-    borderRadius: 6,
-  },
-  arrow: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#ccc',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 6,
-    marginHorizontal: 4,
-  },
-  arrowText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-});
+const getStyles = (isDark: boolean) =>
+  StyleSheet.create({
+    container: {
+      padding: 20,
+      backgroundColor: isDark ? '#121212' : '#D0F0C0',
+      flexGrow: 1,
+    },
+    title: {
+      fontSize: 22,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      textAlign: 'center',
+      color: isDark ? '#fff' : '#000',
+    },
+    label: {
+      marginTop: 12,
+      fontWeight: '800',
+      color: isDark ? '#ddd' : '#000',
+    },
+    input: {
+      borderWidth: 1,
+      borderColor: isDark ? '#555' : '#a9a9a9',
+      padding: 8,
+      backgroundColor: isDark ? '#1e1e1e' : 'white',
+      color: isDark ? '#fff' : '#000',
+      borderRadius: 6,
+      marginBottom: 8,
+      marginTop: 4,
+    },
+    pickerWrapper: {
+      borderRadius: 6,
+      backgroundColor: isDark ? '#2a2a2a' : '#e0e0e0',
+      borderWidth: 1,
+      borderColor: isDark ? '#444' : '#000',
+      marginBottom: 10,
+      height: 40,
+      justifyContent: 'center',
+    },
+    vinegarUnitPickerWrapper: {
+      marginTop: 4,
+    },
+    picker: {
+      height: 52,
+      color: isDark ? '#fff' : '#000',
+      fontSize: 12,
+      fontFamily: 'System',
+      textAlignVertical: 'center',
+      includeFontPadding: false,
+    },
+    vinegarUnitPicker: {},
+    output: {
+      backgroundColor: isDark ? '#333' : '#FED800',
+      color: isDark ? '#fff' : '#000',
+      padding: 12,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: isDark ? '#555' : '#000',
+      fontSize: 14,
+      marginTop: 20,
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    acidityWrapper: {
+      flex: 1,
+      marginRight: 10,
+    },
+    unitWrapper: {
+      flex: 1,
+      marginLeft: 10,
+    },
+    acidityInputRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 4,
+    },
+    acidityInput: {
+      flex: 1,
+      textAlign: 'center',
+      borderWidth: 1,
+      borderColor: isDark ? '#555' : '#a9a9a9',
+      backgroundColor: isDark ? '#1e1e1e' : 'white',
+      color: isDark ? '#fff' : '#000',
+      paddingVertical: 8,
+      borderRadius: 6,
+    },
+    arrow: {
+      width: 40,
+      height: 40,
+      backgroundColor: isDark ? '#444' : '#ccc',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 6,
+      marginHorizontal: 4,
+    },
+    arrowText: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: isDark ? '#fff' : '#000',
+    },
+  });
