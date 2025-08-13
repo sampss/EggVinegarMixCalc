@@ -140,7 +140,11 @@ export default function CalciumConverter() {
         </View>
       </View>
 
-      <Text style={styles.output}>{summary}</Text>
+      <View style={styles.outputBox}>
+        <View style={styles.innerContainer}>
+          <Text style={styles.outputText}>{summary}</Text>
+        </View>
+      </View>  
     </ScrollView>
   );
 }
@@ -195,20 +199,22 @@ const getStyles = (isDark: boolean) =>
       includeFontPadding: false,
     },
     vinegarUnitPicker: {},
-    output: {
+    outputBox: {
       backgroundColor: isDark ? '#333' : '#FED800',
-      color: isDark ? '#fff' : '#000',
       padding: 12,
       borderRadius: 8,
       borderWidth: 1,
       borderColor: isDark ? '#555' : '#000',
-      fontSize: 14,
-      marginTop: 20,
       shadowColor: '#000',
       shadowOffset: { width: 4, height: 2 },
       shadowOpacity: 0.5,
       shadowRadius: 4,
-      elevation: 4, // Android shadow
+      elevation: 4,
+    },
+    outputText: {
+      fontSize: 14,
+      color: isDark ? '#fff' : '#000',
+      textAlign: 'left',
     },
     row: {
       flexDirection: 'row',
@@ -269,4 +275,9 @@ const getStyles = (isDark: boolean) =>
       marginTop: 4,
       height: 36,
     },
+    innerContainer: {
+      padding: 10,
+      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      borderRadius: 8,
+    }
   });

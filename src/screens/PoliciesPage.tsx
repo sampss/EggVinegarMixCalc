@@ -144,6 +144,7 @@ const getStyles = (isDark: boolean) =>
       paddingRight: 24,
     },
     innerContent: {
+      flex: 1,
       padding: 12,
     }
   });
