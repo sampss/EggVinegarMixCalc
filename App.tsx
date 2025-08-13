@@ -125,7 +125,7 @@ function ModalLinks({ setModalVisible, theme }) {
       <Pressable
         onPress={() => {
           setModalVisible(false);
-          navigation.navigate('PrivacyPolicy'); // once implemented
+          navigation.navigate('PoliciesPage');
         }}
         style={({ pressed }) => [
           styles.linkButton,

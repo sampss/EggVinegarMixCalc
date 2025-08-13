@@ -15,7 +15,7 @@ const GearMenuModal = ({ darkMode, setDarkMode }) => {
   const navItems = [
     { label: '🧮 Calculator', target: 'Home' },
     { label: 'ℹ️ Information', target: 'Information' },
-    { label: '📜 Privacy Policy', target: 'PrivacyPolicy' },
+    { label: '📜 Policies', target: 'PoliciesPage' },
   ];
 
   const filteredItems = navItems.filter(item => item.target !== current);

@@ -5,8 +5,9 @@ import { MD3Theme } from 'react-native-paper';
 
 import CalciumConverter from '../../CalciumConverter';
 import Information from '../screens/Information';
-import PrivacyPolicy from '../screens/PrivacyPolicy'; // if implemented
+import PrivacyPolicy from '../screens/PoliciesPage'; // if implemented
 import ScreenWrapper from '../components/ScreenWrapper';
+import Policies from '../screens/PoliciesPage';
 
 type RootNavigatorProps = {
   darkMode: boolean;
@@ -40,10 +41,10 @@ export default function RootNavigator({
         )}
       />
       <Stack.Screen
-        name="PrivacyPolicy"
+        name="PoliciesPage"
         children={() => (
           <ScreenWrapper darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}>
-            <PrivacyPolicy />
+            <Policies />
           </ScreenWrapper>
         )}
       />
