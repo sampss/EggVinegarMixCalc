@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import {
   StatusBar,
   StyleSheet,
-  SafeAreaView,
   View,
   Modal,
   Pressable,
   Text,
 } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {
   Provider as PaperProvider,
   MD3LightTheme,
   MD3DarkTheme,
   SegmentedButtons,
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 import RootNavigator from './src/navigation/RootNavigator';
@@ -36,109 +36,70 @@ export default function App() {
   }, []);
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <SafeAreaView style={[styles.wrapper, backgroundStyle]}>
-          <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
-          
+    <SafeAreaProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <SafeAreaView style={[styles.wrapper, backgroundStyle, ]}>
+            <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
+            
 
-          {/* Main content with navigation */}
-          <View style={styles.content}>
-            <RootNavigator darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}/>
-          </View>
+            {/* Main content with navigation */}
+            <View style={styles.content}>
+              <RootNavigator darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}/>
+            </View>
 
-          {/* Ad banner */}
-          {isAdMobReady && <Banner backgroundColor={darkMode ? '#222' : '#d0f0c0'} />}
+            {/* Ad banner */}
+            {isAdMobReady && <Banner backgroundColor={darkMode ? '#222' : '#95dd71'} />}
 
-          {/* Theme selector modal */}
-          <Modal
-            visible={modalVisible}
-            transparent
-            animationType="fade"
-            onRequestClose={() => setModalVisible(false)}
-          >
-            <View style={styles.modalOverlay}>
-              <View style={[styles.modalContent, { backgroundColor: theme.colors.surface }]}>
-                <Text style={[styles.modalText, { color: theme.colors.onSurface }]}>
-                  Select Theme
-                </Text>
+            {/* Theme selector modal */}
+            <Modal
+              visible={modalVisible}
+              transparent
+              animationType="fade"
+              onRequestClose={() => setModalVisible(false)}
+            >
+              <View style={styles.modalOverlay}>
+                <View style={[styles.modalContent, { backgroundColor: theme.colors.surface }]}>
+                  <Text style={[styles.modalText, { color: theme.colors.onSurface }]}>
+                    Select Theme
+                  </Text>
 
-                <SegmentedButtons
-                  value={darkMode ? 'dark' : 'light'}
-                  onValueChange={(value) => {
-                    setDarkMode(value === 'dark');
-                    setModalVisible(false);
-                  }}
-                  buttons={[
-                    { value: 'light', label: 'Light', icon: 'white-balance-sunny' },
-                    { value: 'dark', label: 'Dark', icon: 'moon-waning-crescent' },
-                  ]}
-                />
+                  <SegmentedButtons
+                    value={darkMode ? 'dark' : 'light'}
+                    onValueChange={(value) => {
+                      setDarkMode(value === 'dark');
+                      setModalVisible(false);
+                    }}
+                    buttons={[
+                      { value: 'light', label: 'Light', icon: 'white-balance-sunny' },
+                      { value: 'dark', label: 'Dark', icon: 'moon-waning-crescent' },
+                    ]}
+                  />
 
-                {/* Spacer */}
-                <View style={{ height: 24 }} />
+                  {/* Spacer */}
+                  <View style={{ height: 24 }} />
 
-                {/* Navigation links */}
-                <ModalLinks setModalVisible={setModalVisible} theme={theme} />
-
-                {/* Close button */}
-                <View style={{ marginTop: 24 }}>
-                  <Pressable
-                    onPress={() => setModalVisible(false)}
-                    style={styles.closeButton}
-                  >
-                    <Text style={[styles.linkText, { color: theme.colors.onSurface }]}>
-                      Close
-                    </Text>
-                  </Pressable>
+                  {/* Close button */}
+                  <View style={{ marginTop: 24 }}>
+                    <Pressable
+                      onPress={() => setModalVisible(false)}
+                      style={styles.closeButton}
+                    >
+                      <Text style={[styles.linkText, { color: theme.colors.onSurface }]}>
+                        Close
+                      </Text>
+                    </Pressable>
+                  </View>
                 </View>
               </View>
-            </View>
-          </Modal>
-        </SafeAreaView>
-      </NavigationContainer>
-    </PaperProvider>
+            </Modal>
+          </SafeAreaView>
+        </NavigationContainer>
+      </PaperProvider>
+    </ SafeAreaProvider>
   );
 }
 
-// Extracted modal links for cleaner structure
-function ModalLinks({ setModalVisible, theme }) {
-  const navigation = useNavigation();
-
-  return (
-    <>
-      <Pressable
-        onPress={() => {
-          setModalVisible(false);
-          navigation.navigate('Information');
-        }}
-        style={({ pressed }) => [
-          styles.linkButton,
-          { backgroundColor: pressed ? theme.colors.surfaceVariant : 'transparent' },
-        ]}
-      >
-        <Text style={[styles.linkText, { color: theme.colors.primary }]}>
-          ℹ️ Information Page
-        </Text>
-      </Pressable>
-
-      <Pressable
-        onPress={() => {
-          setModalVisible(false);
-          navigation.navigate('PoliciesPage');
-        }}
-        style={({ pressed }) => [
-          styles.linkButton,
-          { backgroundColor: pressed ? theme.colors.surfaceVariant : 'transparent' },
-        ]}
-      >
-        <Text style={[styles.linkText, { color: theme.colors.primary }]}>
-          📜 Privacy Policy
-        </Text>
-      </Pressable>
-    </>
-  );
-}
 
 const styles = StyleSheet.create({
   wrapper: {

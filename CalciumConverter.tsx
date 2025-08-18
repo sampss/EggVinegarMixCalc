@@ -80,7 +80,7 @@ export default function CalciumConverter() {
         />
       </View>
       <View style={styles.eggUnitWrapper}>
-        <Text style={styles.label}>Eggshell Quantity Unit</Text>
+        <Text style={styles.label}>Eggshell Unit</Text>
         <View style={[styles.pickerWrapper, styles.eggshellUnitPickerWrapper]}>          
           <Picker
             selectedValue={eggshellUnit}
@@ -126,7 +126,7 @@ export default function CalciumConverter() {
         </View>
 
         <View style={styles.unitWrapper}>
-          <Text style={styles.label}>Vinegar Output Unit</Text>
+          <Text style={styles.label}>Output Unit</Text>
           <View style={[styles.pickerWrapper, styles.vinegarUnitPickerWrapper]}>
             <Picker
               selectedValue={vinegarUnit}
@@ -153,7 +153,7 @@ const getStyles = (isDark: boolean) =>
   StyleSheet.create({
     container: {
       padding: 20,
-      backgroundColor: isDark ? '#121212' : '#D0F0C0',
+      backgroundColor: isDark ? '#121212' : '#95dd71',
       flexGrow: 1,
     },
     title: {
@@ -250,6 +250,8 @@ const getStyles = (isDark: boolean) =>
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 6,
+      borderWidth: 1,
+      borderColor: isDark ? '#444' : '#000',
       marginHorizontal: 4,
     },
     arrowText: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Pressable, StyleSheet, Dimensions } from 'react-native';
+import { View, Pressable, StyleSheet, Dimensions} from 'react-native';
 import Modal from 'react-native-modal';
 import { IconButton, Switch, Text, useTheme } from 'react-native-paper';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -13,9 +13,11 @@ const GearMenuModal = ({ darkMode, setDarkMode }) => {
   const current = route.name;
 
   const navItems = [
-    { label: '🧮 Calculator', target: 'Home' },
-    { label: 'ℹ️ Information', target: 'Information' },
-    { label: '📜 Policies', target: 'PoliciesPage' },
+    { label: '🧮  Calculator', target: 'Home' },
+    { label: 'ℹ️  Information', target: 'Information' },
+    { label: '✉️  Give me feedback', target: 'Feedback' },
+    { label: '📜  Policies', target: 'PoliciesPage' },
+    { label: '☕  Buy Me a Coffee', target: 'Donations' },
   ];
 
   const filteredItems = navItems.filter(item => item.target !== current);
@@ -24,7 +26,7 @@ const GearMenuModal = ({ darkMode, setDarkMode }) => {
   const closeMenu = () => setVisible(false);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, ]}>
       <IconButton icon="cog" onPress={openMenu} size={20} /> {/* Shrunk from default 24 */}
 
       <Modal

@@ -76,7 +76,7 @@ const getStyles = (isDark: boolean) =>
   StyleSheet.create({
     container: {
       padding: 20,
-      backgroundColor: isDark ? '#121212' : '#D0F0C0',
+      backgroundColor: isDark ? '#121212' : '#95dd71',
       flexGrow: 1,
     },
     title: {

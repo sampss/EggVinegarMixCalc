@@ -5,9 +5,11 @@ import { MD3Theme } from 'react-native-paper';
 
 import CalciumConverter from '../../CalciumConverter';
 import Information from '../screens/Information';
-import PrivacyPolicy from '../screens/PoliciesPage'; // if implemented
+import Donations from '../screens/Donations';
 import ScreenWrapper from '../components/ScreenWrapper';
 import Policies from '../screens/PoliciesPage';
+import Feedback from '../screens/Feedback';
+
 
 type RootNavigatorProps = {
   darkMode: boolean;
@@ -41,10 +43,26 @@ export default function RootNavigator({
         )}
       />
       <Stack.Screen
+        name="Feedback"
+        children={() => (
+          <ScreenWrapper darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}>
+            <Feedback />
+          </ScreenWrapper>
+        )}
+      />
+      <Stack.Screen
         name="PoliciesPage"
         children={() => (
           <ScreenWrapper darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}>
             <Policies />
+          </ScreenWrapper>
+        )}
+      />
+      <Stack.Screen
+        name="Donations"
+        children={() => (
+          <ScreenWrapper darkMode={darkMode} setDarkMode={setDarkMode} theme={theme}>
+            <Donations />
           </ScreenWrapper>
         )}
       />
