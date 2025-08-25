@@ -79,3 +79,6 @@ key_info.txt
 *.log
 *.trace
 *.crash
+
+# Additional Non code related
+00_Not_Code_Additional/
