@@ -1,7 +1,7 @@
 {
-  "APP_ENV": "internal",           // 'internal' or 'production'
-  "IS_Test_BUILD": true,
-  "USE_TEST_ADS": true,
+  "APP_ENV": "production",           // 'internal' or 'production'
+  "IS_Test_BUILD": false,
+  "USE_TEST_ADS": false,
   "VERSION_LABEL": "0.9-beta",
-  "SHOW_DEBUG_UI": true
+  "SHOW_DEBUG_UI": false
 }

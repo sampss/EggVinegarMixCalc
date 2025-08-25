@@ -107,7 +107,7 @@ const getStyles = (isDark: boolean) =>
     container: {
       padding: 20,
       borderRadius: 8,
-      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      backgroundColor: isDark ? '#1e1e1e' : '#FFE570',
     },
     heading: {
       fontSize: 22,

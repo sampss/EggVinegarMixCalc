@@ -45,8 +45,16 @@ export default function CalciumConverter() {
     const idealAcetic = CaCO3 * 1.2;
     const recommendedVinegarMl = idealAcetic / getAceticPerMl();
 
-    let result = `🥚 Estimated calcium carbonate: ${CaCO3.toFixed(2)}g\n\n`;
-    result += `🎯 Required vinegar volume: ${formatVolume(recommendedVinegarMl)} at ${acidity}% acidity`;
+    let result = 
+    <Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 24 }}>
+        {formatVolume(recommendedVinegarMl)}
+      </Text>
+      {'\n\n'}
+      🥚 Estimated calcium carbonate: {CaCO3.toFixed(2)}g{'\n\n'}
+      🎯 Required vinegar volume: {formatVolume(recommendedVinegarMl)} at {acidity}% acidity
+    </Text>
+
 
     setSummary(result);
   }, [eggshellAmount, eggshellUnit, acidity, vinegarUnit]);
@@ -153,7 +161,7 @@ const getStyles = (isDark: boolean) =>
   StyleSheet.create({
     container: {
       padding: 20,
-      backgroundColor: isDark ? '#121212' : '#95dd71',
+      backgroundColor: isDark ? '#121212' : '#85de59ff',
       flexGrow: 1,
     },
     title: {
@@ -200,7 +208,7 @@ const getStyles = (isDark: boolean) =>
     },
     vinegarUnitPicker: {},
     outputBox: {
-      backgroundColor: isDark ? '#333' : '#FED800',
+      backgroundColor: isDark ? '#333' : '#ffe157',
       padding: 12,
       borderRadius: 8,
       borderWidth: 1,
@@ -279,7 +287,7 @@ const getStyles = (isDark: boolean) =>
     },
     innerContainer: {
       padding: 10,
-      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      backgroundColor: isDark ? '#1e1e1e' : '#FFE570',
       borderRadius: 8,
     }
   });

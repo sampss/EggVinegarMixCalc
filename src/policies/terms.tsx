@@ -75,7 +75,7 @@ const getStyles = (isDark: boolean) =>
       width: '100%',
       padding: 20,
       borderRadius: 8,
-      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      backgroundColor: isDark ? '#1e1e1e' : '#FFE570',
     },
     heading: {
       fontSize: 22,

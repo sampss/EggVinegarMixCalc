@@ -37,7 +37,7 @@ const getStyles = (isDark: boolean) =>
     },
     innerContainer: {
       padding: 12,
-      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      backgroundColor: isDark ? '#1e1e1e' : '#FFE570',  //'#1e1e1e' : '#FFE135',
       borderRadius: 8,
     },
     sectionTitle: {

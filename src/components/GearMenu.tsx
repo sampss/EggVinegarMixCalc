@@ -26,7 +26,7 @@ const GearMenuModal = ({ darkMode, setDarkMode }) => {
   const closeMenu = () => setVisible(false);
 
   return (
-    <View style={[styles.container, ]}>
+    <View style={[styles.container, { backgroundColor: darkMode ? '#121212' : '#95dd71' }]}>
       <IconButton icon="cog" onPress={openMenu} size={20} /> {/* Shrunk from default 24 */}
 
       <Modal
@@ -72,8 +72,12 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-end',
     paddingRight: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#000', // solid black
+    //borderBottomWidth: 1,
+    //borderBottomColor: '#000', // solid black
+    //backgroundColor: darkMode ? '#121212' : '#95dd71',
+    width: '100%',            
+    height: 44,               
+
   },
   modal: {
     margin: 0,

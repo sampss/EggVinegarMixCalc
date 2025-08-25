@@ -66,7 +66,7 @@ const getStyles = (isDark: boolean) =>
   StyleSheet.create({
     innerContainer: {
       padding: 12,
-      backgroundColor: isDark ? '#1e1e1e' : '#FFE135',
+      backgroundColor: isDark ? '#1e1e1e' : '#ffe570',
       borderRadius: 8,
     },
     container: {
